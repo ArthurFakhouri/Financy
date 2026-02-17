@@ -74,8 +74,8 @@ export const UserScalarFieldEnum = {
   full_name: 'full_name',
   email: 'email',
   password: 'password',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -88,7 +88,9 @@ export const TransactionScalarFieldEnum = {
   date: 'date',
   value: 'value',
   category_id: 'category_id',
-  user_id: 'user_id'
+  user_id: 'user_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
@@ -97,7 +99,9 @@ export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[key
 export const CategoryScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  description: 'description'
+  description: 'description',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]

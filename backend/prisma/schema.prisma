@@ -11,12 +11,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String  @id @default(uuid())
   full_name String
-  email     String   @unique
+  email     String  @unique
   password  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   transactions Transaction[]
 
@@ -40,6 +41,9 @@ model Transaction {
   user_id     String
   user        User     @relation(fields: [user_id], references: [id])
 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
   @@map("transactions")
 }
 
@@ -48,6 +52,9 @@ model Category {
   title        String
   description  String
   transactions Transaction[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@map("categories")
 }
