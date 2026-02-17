@@ -3,9 +3,51 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  full_name String
+  email     String   @unique
+  password  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  transactions Transaction[]
+
+  @@map("users")
+}
+
+enum TransactionType {
+  expense
+  revenue
+}
+
+model Transaction {
+  id          String          @id @default(uuid())
+  description String
+  type        TransactionType
+  date        DateTime
+  value       Int
+
+  category_id String
+  category    Category @relation(fields: [category_id], references: [id])
+  user_id     String
+  user        User     @relation(fields: [user_id], references: [id])
+
+  @@map("transactions")
+}
+
+model Category {
+  id           String        @id @default(uuid())
+  title        String
+  description  String
+  transactions Transaction[]
+
+  @@map("categories")
 }
