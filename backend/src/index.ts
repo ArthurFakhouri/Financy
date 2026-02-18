@@ -6,38 +6,46 @@ import express from "express";
 import { buildSchema } from "type-graphql";
 import { buildContext } from "./graphql/contexts";
 import { AuthResolver } from "./resolvers/auth.resolver";
+import { CategoryResolver } from "./resolvers/category.resolver";
+import { TransactionResolver } from "./resolvers/transaction.resolver";
 import { UserResolver } from "./resolvers/user.resolver";
+import './graphql/enums'
 
 async function bootstrap() {
-  const app = express()
+  const app = express();
 
   const schema = await buildSchema({
-    resolvers: [AuthResolver, UserResolver],
+    resolvers: [
+      AuthResolver,
+      UserResolver,
+      TransactionResolver,
+      CategoryResolver,
+    ],
     validate: false,
-    emitSchemaFile: "./schema.graphql"
-  })
+    emitSchemaFile: "./schema.graphql",
+  });
 
   const server = new ApolloServer({
     schema,
-  })
+  });
 
-  await server.start()
+  await server.start();
 
   app.use(
-    "graphql",
+    "/graphql",
     cors(),
     express.json(),
-    expressMiddleware(server, { context: buildContext })
-  )
+    expressMiddleware(server, { context: buildContext }),
+  );
 
   app.listen(
     {
       port: 4000,
     },
     () => {
-      console.log("Servidor iniciado na porta 4000 🎉☕")
-    }
-  )
+      console.log("Servidor iniciado na porta 4000 🎉☕");
+    },
+  );
 }
 
-bootstrap()
+bootstrap();
