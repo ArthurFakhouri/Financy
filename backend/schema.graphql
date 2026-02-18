@@ -5,13 +5,13 @@
 
 type CategoryModel {
   color: String
-  createdAt: DateTimeISO
+  created_at: DateTimeISO
   description: String!
   icon: String
   id: ID!
   title: String!
   transactions: [TransactionModel!]
-  updatedAt: DateTimeISO
+  updated_at: DateTimeISO
   user: UserModel
   user_id: String!
 }
@@ -86,12 +86,12 @@ input SaveTransactionInput {
 type TransactionModel {
   category: CategoryModel
   category_id: String!
-  createdAt: DateTimeISO
+  created_at: DateTimeISO
   date: DateTimeISO!
   description: String!
   id: ID!
   type: TransactionType!
-  updatedAt: DateTimeISO
+  updated_at: DateTimeISO
   user: UserModel
   user_id: String!
   value: Float!
@@ -103,10 +103,10 @@ enum TransactionType {
 }
 
 type UserModel {
-  createdAt: DateTimeISO
+  created_at: DateTimeISO
   email: String!
   full_name: String!
   id: ID!
   password: String
-  updatedAt: DateTimeISO
+  updated_at: DateTimeISO
 }
