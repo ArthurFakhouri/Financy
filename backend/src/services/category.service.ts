@@ -1,10 +1,11 @@
 import { prismaClient } from "../../prisma/prisma";
 import type {
-  SaveCategoryInput,
+  CreateCategoryInput,
+  UpdateCategoryInput,
 } from "../DTOs/input/category.input";
 
 export class CategoryService {
-  async createCategory(data: SaveCategoryInput, userId: string) {
+  async createCategory(data: CreateCategoryInput, userId: string) {
     const user = await prismaClient.category.create({
       data: {
         title: data.title,
@@ -18,7 +19,7 @@ export class CategoryService {
     return user;
   }
 
-  async updateCategory(data: SaveCategoryInput, id: string) {
+  async updateCategory(data: UpdateCategoryInput, id: string) {
     const category = await prismaClient.category.findUnique({
       where: {
         id: id,

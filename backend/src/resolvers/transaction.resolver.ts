@@ -7,7 +7,7 @@ import {
   Root,
   UseMiddleware,
 } from "type-graphql";
-import { SaveTransactionInput } from "../DTOs/input/transaction.input";
+import { CreateTransactionInput, SaveTransactionInput, UpdateTransactionInput } from "../DTOs/input/transaction.input";
 import type { User } from "../generated/prisma/client";
 import { GqlUser } from "../graphql/decorators/user.decorator";
 import { isAuth } from "../middlewares/auth.middleware";
@@ -27,7 +27,7 @@ export class TransactionResolver {
 
   @Mutation(() => TransactionModel)
   async createTransaction(
-    @Arg('data', () => SaveTransactionInput) data: SaveTransactionInput,
+    @Arg('data', () => CreateTransactionInput) data: CreateTransactionInput,
     @GqlUser() user: User,
   ): Promise<TransactionModel> {
     return this.transactionService.createTransaction(data, user.id);
@@ -35,7 +35,7 @@ export class TransactionResolver {
 
   @Mutation(() => TransactionModel)
   async updateTransaction(
-    @Arg('data', () => SaveTransactionInput) data: SaveTransactionInput,
+    @Arg('data', () => UpdateTransactionInput) data: UpdateTransactionInput,
     @Arg('id', () => String) id: string,
   ): Promise<TransactionModel> {
     return this.transactionService.updateTransaction(data, id);

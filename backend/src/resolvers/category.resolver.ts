@@ -7,7 +7,10 @@ import {
   Root,
   UseMiddleware,
 } from "type-graphql";
-import { SaveCategoryInput } from "../DTOs/input/category.input";
+import {
+  CreateCategoryInput,
+  UpdateCategoryInput,
+} from "../DTOs/input/category.input";
 import type { User } from "../generated/prisma/client";
 import { GqlUser } from "../graphql/decorators/user.decorator";
 import { isAuth } from "../middlewares/auth.middleware";
@@ -27,7 +30,7 @@ export class CategoryResolver {
 
   @Mutation(() => CategoryModel)
   async createCategory(
-    @Arg('data', () => SaveCategoryInput) data: SaveCategoryInput,
+    @Arg('data', () => CreateCategoryInput) data: CreateCategoryInput,
     @GqlUser() user: User,
   ): Promise<CategoryModel> {
     return this.categoryService.createCategory(data, user.id);
@@ -35,7 +38,7 @@ export class CategoryResolver {
 
   @Mutation(() => CategoryModel)
   async updateCategory(
-    @Arg('data', () => SaveCategoryInput) data: SaveCategoryInput,
+    @Arg('data', () => UpdateCategoryInput) data: UpdateCategoryInput,
     @Arg('id', () => String) id: string,
   ): Promise<CategoryModel> {
     return this.categoryService.updateCategory(data, id);

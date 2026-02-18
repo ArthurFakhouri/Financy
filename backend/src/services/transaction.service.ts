@@ -1,10 +1,8 @@
 import { prismaClient } from "../../prisma/prisma";
-import type {
-  SaveTransactionInput,
-} from "../DTOs/input/transaction.input";
+import type { CreateTransactionInput, UpdateTransactionInput } from "../DTOs/input/transaction.input";
 
 export class TransactionService {
-  async createTransaction(data: SaveTransactionInput, userId: string) {
+  async createTransaction(data: CreateTransactionInput, userId: string) {
     const user = await prismaClient.transaction.create({
       data: {
         type: data.type,
@@ -19,7 +17,7 @@ export class TransactionService {
     return user;
   }
 
-  async updateTransaction(data: SaveTransactionInput, id: string) {
+  async updateTransaction(data: UpdateTransactionInput, id: string) {
     const transaction = await prismaClient.transaction.findUnique({
       where: {
         id: id,
