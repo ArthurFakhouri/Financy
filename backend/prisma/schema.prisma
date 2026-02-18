@@ -49,15 +49,16 @@ model Transaction {
 }
 
 model Category {
-  id           String        @id @default(uuid())
-  title        String
-  description  String?
-  transactions Transaction[]
-  icon         String?
-  color        String?
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+  icon        String?
+  color       String?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  transactions Transaction[]
 
   user_id String?
   user    User?   @relation(fields: [user_id], references: [id])

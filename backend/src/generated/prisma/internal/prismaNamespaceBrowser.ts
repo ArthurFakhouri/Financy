@@ -100,8 +100,11 @@ export const CategoryScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
+  icon: 'icon',
+  color: 'color',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  user_id: 'user_id'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
