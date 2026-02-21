@@ -11,3 +11,12 @@ export class CreateUserInput {
   @Field(() => String)
   password!: string
 }
+
+@InputType()
+export class UpdateProfileInput {
+  @Field(() => String)
+  full_name?: string
+
+  @Field(() => String)
+  email?: string
+}

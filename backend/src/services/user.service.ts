@@ -1,5 +1,5 @@
 import { prismaClient } from "../../prisma/prisma";
-import type { CreateUserInput } from "../DTOs/input/user.input";
+import type { CreateUserInput, UpdateProfileInput } from "../DTOs/input/user.input";
 
 export class UserService {
   async createUser(data: CreateUserInput) {
@@ -19,6 +19,25 @@ export class UserService {
     });
 
     return user;
+  }
+
+  async updateProfile(data: UpdateProfileInput, id: string) {
+    const user = await prismaClient.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!user) throw new Error("Usuário não encontrado!");
+
+    return await prismaClient.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        full_name: data.full_name,
+      },
+    });
   }
 
   async findUser(id: string) {

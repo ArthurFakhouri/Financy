@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import { apolloClient } from "@/lib/graphql/apollo";
 import { LOGIN } from "@/lib/graphql/mutations/login";
 import { REGISTER } from "@/lib/graphql/mutations/register";
@@ -29,14 +28,35 @@ type AuthProps = {
   signUp: (data: RegisterInput) => Promise<boolean>;
   login: (data: LoginInput) => Promise<boolean>;
   logout: () => void
+  updateUser: (user: UserProps) => void
 };
 
 export const useAuthStore = create<AuthProps>()(
-  persist(
-    (set) => ({
+  (set) => {
+
+    const authStorage = localStorage.getItem('auth-storage')
+
+    let authData = {
       user: null,
       token: null,
       isAuthenticated: false,
+    }
+
+    if (authStorage) {
+
+      const authParsed = JSON.parse(authStorage)
+
+      authData = {
+        user: authParsed.user,
+        token: authParsed.token,
+        isAuthenticated: authParsed.isAuthenticated,
+      }
+    }
+
+    return {
+      user: authData.user,
+      token: authData.token,
+      isAuthenticated: authData.isAuthenticated,
 
       signUp: async (dataInput: RegisterInput) => {
         try {
@@ -95,17 +115,26 @@ export const useAuthStore = create<AuthProps>()(
           if (data?.login) {
             const { token, user } = data.login;
 
+            const userData = {
+              id: user.id,
+              full_name: user.full_name,
+              email: user.email,
+              created_at: user.created_at,
+              updated_at: user.updated_at,
+            }
+
             set({
-              user: {
-                id: user.id,
-                full_name: user.full_name,
-                email: user.email,
-                created_at: user.created_at,
-                updated_at: user.updated_at,
-              },
+              user: userData,
               token: token,
               isAuthenticated: true,
             });
+            if (dataInput.rememberMe) {
+              localStorage.setItem('auth-storage', JSON.stringify({
+                user: userData,
+                token: token,
+                isAuthenticated: true,
+              }))
+            }
             return true;
           }
         } catch (error) {
@@ -121,11 +150,14 @@ export const useAuthStore = create<AuthProps>()(
           isAuthenticated: false,
         })
 
+        localStorage.removeItem('auth-storage')
         apolloClient.clearStore()
+      },
+      updateUser: (user) => {
+        set({
+          user: user,
+        })
       }
-    }),
-    {
-      name: "auth-storage",
-    },
-  ),
+    }
+  }
 );

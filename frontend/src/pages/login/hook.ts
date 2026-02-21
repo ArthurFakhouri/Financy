@@ -18,11 +18,13 @@ export function useLogin() {
     defaultValues: {
       email: "",
       password: "",
+      rememberMe: false,
     },
     mode: "onSubmit",
   });
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -40,7 +42,8 @@ export function useLogin() {
     try {
       const loginMutate = await login({
         email: data.email,
-        password: data.password
+        password: data.password,
+        rememberMe: data.rememberMe,
       });
 
       if (loginMutate) {
@@ -54,6 +57,7 @@ export function useLogin() {
 
   return {
     errors,
+    control,
     viewPassword,
     register,
     onSubmit,

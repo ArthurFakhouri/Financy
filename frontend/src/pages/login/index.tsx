@@ -1,4 +1,5 @@
 import { Eye, EyeClosed, Lock, Mail, UserRoundPlus } from "lucide-react";
+import { Controller } from "react-hook-form";
 import logo from "@/assets/logo.svg";
 import { ButtonLabel } from "@/components/Button/Label";
 import { Card } from "@/components/Card";
@@ -11,12 +12,13 @@ import { useLogin } from "./hook";
 export function Login() {
   const {
     errors,
+    control,
     viewPassword,
     register,
     onSubmit,
     handleSignUp,
     handleSubmit,
-    handleTogglePassword
+    handleTogglePassword,
   } = useLogin();
 
   return (
@@ -61,7 +63,13 @@ export function Login() {
               error={errors.password?.message}
             />
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <CheckBox>Lembrar-me</CheckBox>
+              <Controller
+                control={control}
+                name="rememberMe"
+                render={({ field }) => {
+                  return <CheckBox checked={field.value} onCheckedChange={field.onChange}>Lembrar-me</CheckBox>;
+                }}
+              />
               <Link to={"#"}>Recuperar senha</Link>
             </div>
           </div>

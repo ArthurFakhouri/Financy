@@ -4,7 +4,11 @@ import { Link } from "../Link";
 import { useHeader } from "./hook";
 
 export function Header() {
-  const { user, pathname, handleProfile } = useHeader();
+  const {
+    pathname,
+    avatarFallback,
+    handleProfile
+  } = useHeader();
 
   return (
     <div className="w-full bg-white border-b border-b-gray-200 flex items-center justify-between gap-4 px-12 py-4">
@@ -36,7 +40,7 @@ export function Header() {
       </div>
       <div>
         <Avatar size="sm" className="hover:cursor-pointer" onClick={handleProfile}>
-          {user?.full_name.slice(0, 2).toUpperCase()}
+          {avatarFallback}
         </Avatar>
       </div>
     </div>
