@@ -35,6 +35,8 @@ export function Profile() {
           <div className="w-full flex flex-col gap-4">
             <InputLabel
               label="Nome completo"
+              htmlFor="fullName"
+              id="fullName"
               placeholder="Seu nome completo"
               {...register("full_name")}
               error={errors.full_name?.message}
@@ -42,6 +44,8 @@ export function Profile() {
             />
             <InputLabel
               label="E-mail"
+              htmlFor="email"
+              id="email"
               placeholder="mail@exemplo.com"
               {...register("email")}
               preInput={<Mail className="size-4" />}
