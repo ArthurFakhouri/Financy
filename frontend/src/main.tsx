@@ -4,10 +4,12 @@ import { App } from "./app.tsx";
 import "./styles/globals.css";
 import { ApolloProvider } from "@apollo/client/react";
 import { BrowserRouter } from "react-router-dom";
+import { Toast } from "./components/Toast/index.tsx";
 import { apolloClient } from "./lib/graphql/apollo.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <Toast />
     <ApolloProvider client={apolloClient}>
       <BrowserRouter>
         <App />
