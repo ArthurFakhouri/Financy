@@ -23,6 +23,7 @@ export function ButtonLabel({ className, variant = "solid", size = "md", ...prop
         "data-[size='md']:h-12 data-[size='sm']:h-9",
         "data-[size='md']:px-4 data-[size='md']:py-3",
         "data-[size='sm']:px-3 data-[size='sm']:py-2",
+        "data-[size='sm']:text-sm",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         className
       )}

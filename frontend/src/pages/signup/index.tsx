@@ -34,6 +34,8 @@ export function SignUp() {
           <div className="flex flex-col gap-4">
             <InputLabel
               label="Nome completo"
+              htmlFor="fullName"
+              id="fullName"
               type="text"
               autoFocus
               placeholder="Seu nome completo"
@@ -43,6 +45,8 @@ export function SignUp() {
             />
             <InputLabel
               label="E-mail"
+              htmlFor="email"
+              id="email"
               type="email"
               placeholder="mail@exemplo.com"
               {...register("email")}
@@ -51,6 +55,8 @@ export function SignUp() {
             />
             <InputLabel
               label="Senha"
+              htmlFor="password"
+              id="password"
               type={viewPassword ? "text" : "password"}
               placeholder="Digite sua senha"
               {...register("password")}

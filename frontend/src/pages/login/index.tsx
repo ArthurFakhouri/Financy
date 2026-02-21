@@ -37,6 +37,8 @@ export function Login() {
           <div className="flex flex-col gap-4">
             <InputLabel
               label="E-mail"
+              htmlFor="email"
+              id="email"
               type="email"
               autoFocus
               {...register("email")}
@@ -46,6 +48,8 @@ export function Login() {
             />
             <InputLabel
               label="Senha"
+              htmlFor="password"
+              id="password"
               type={viewPassword ? "text" : "password"}
               placeholder="Digite sua senha"
               {...register("password")}
