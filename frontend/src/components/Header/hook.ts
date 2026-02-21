@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/stores/auth";
 
 export function useHeader() {
+  const [screenWidth, setScreenWidth] = useState(0)
   const user = useAuthStore((state) => state.user);
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,7 +28,19 @@ export function useHeader() {
     return fallback;
   }, [user]);
 
+  useEffect(() => {
+    function handleResize() {
+      setScreenWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    return () => { window.removeEventListener('resize', handleResize) }
+  }, [])
+
   return {
+    screenWidth,
     avatarFallback,
     pathname: location.pathname,
     handleProfile,

@@ -16,7 +16,7 @@ type RouteProps = {
 function ProtectedRoute({ children }: RouteProps) {
   const { isAuthenticated } = useAuthStore();
   return isAuthenticated ? (
-    <div className="flex min-w-dvw min-h-dvh flex-col bg-gray-100 gap-12">
+    <div className="flex min-w-dvw min-h-dvh flex-col bg-gray-100 gap-4 md:gap-12">
       <Header />
       {children}
     </div>

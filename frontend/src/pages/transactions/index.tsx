@@ -1,6 +1,6 @@
 export function Transactions() {
   return (
-    <div>
+    <div className="px-4">
       Transações
     </div>
   )
