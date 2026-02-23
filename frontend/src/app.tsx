@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header";
+import { AuthProvider } from "./context/auth";
 import { Categories } from "./pages/categories";
 import { Dashboard } from "./pages/dashboard";
 import { Login } from "./pages/login";
@@ -16,10 +17,12 @@ type RouteProps = {
 function ProtectedRoute({ children }: RouteProps) {
   const { isAuthenticated } = useAuthStore();
   return isAuthenticated ? (
-    <div className="flex min-w-dvw min-h-dvh flex-col bg-gray-100 gap-4 md:gap-12">
-      <Header />
-      {children}
-    </div>
+    <AuthProvider>
+      <div className="flex min-w-dvw min-h-dvh flex-col relative bg-gray-100 gap-4 pb-4 md:gap-12 md:pb-12">
+        <Header />
+        {children}
+      </div>
+    </AuthProvider>
   ) : (
     <Navigate to="/login" replace />
   );
