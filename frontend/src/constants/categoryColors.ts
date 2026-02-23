@@ -1,9 +1,9 @@
 export const categoryColors = [
-  "green-base",
-  "blue-base",
-  "purple-base",
-  "pink-base",
-  "red-base",
-  "orange-base",
-  "yellow-base",
+  "green",
+  "blue",
+  "purple",
+  "pink",
+  "red",
+  "orange",
+  "yellow",
 ] as const

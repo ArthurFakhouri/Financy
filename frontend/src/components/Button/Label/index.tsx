@@ -6,9 +6,10 @@ export type ButtonLabelProps = ComponentProps<"button"> & {
   size?: "md" | "sm"
 };
 
-export function ButtonLabel({ className, variant = "solid", size = "md", ...props }: ButtonLabelProps) {
+export function ButtonLabel({ type = 'button', className, variant = "solid", size = "md", ...props }: ButtonLabelProps) {
   return (
     <button
+      type={type}
       data-size={size}
       data-variant={variant}
       className={cn(

@@ -6,7 +6,7 @@ export type CategoryProps = {
   description: string
   icon: string
   color: string
-  transactions: Pick<TransactionProps, 'id'>[]
+  transactions: Pick<TransactionProps, 'id' | 'value'>[]
   created_at: Date
   updated_at: Date
 }

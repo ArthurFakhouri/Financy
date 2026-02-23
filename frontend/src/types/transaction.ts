@@ -4,9 +4,10 @@ export type TransactionProps = {
   id: string
   description: string
   type: "expense" | "revenue"
-  date: Date
+  date: string
   value: number
   category: CategoryProps
+  category_id: string
   created_at: Date
   updated_at: Date
 }

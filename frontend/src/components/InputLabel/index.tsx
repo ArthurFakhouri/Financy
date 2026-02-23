@@ -2,6 +2,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export type InputLabelProps = ComponentProps<"input"> & {
+  rootClassName?: string
   boxClassName?: string
   labelClassName?: string;
   label?: string;
@@ -21,23 +22,29 @@ export function InputLabel({
   preInput,
   className,
   boxClassName,
+  rootClassName,
   labelClassName,
   ...inputProps
 }: InputLabelProps) {
   return (
-    <div className="flex flex-col gap-2 group">
-      <label
-        data-error={Boolean(error)}
-        htmlFor={htmlFor}
-        className={cn(
-          "text-gray-700 font-medium text-sm transition-colors",
-          "data-[error='false']:group-[&:has(input:not(:disabled):focus)]:text-brand-base",
-          "data-[error='true']:text-danger",
-          labelClassName
-        )}
-      >
-        {label}
-      </label>
+    <div className={cn(
+      "flex min-w-[250px] flex-1 flex-col gap-2 group",
+      rootClassName,
+    )}>
+      {label && (
+        <label
+          data-error={Boolean(error)}
+          htmlFor={htmlFor}
+          className={cn(
+            "text-gray-700 font-medium text-sm transition-colors",
+            "data-[error='false']:group-[&:has(input:not(:disabled):focus)]:text-brand-base",
+            "data-[error='true']:text-danger",
+            labelClassName
+          )}
+        >
+          {label}
+        </label>
+      )}
       <div data-error={Boolean(error)} className={
         cn(
           "flex items-center px-3 py-3.5 border border-gray-300 rounded-[8px] gap-3 transition-colors text-gray-400",

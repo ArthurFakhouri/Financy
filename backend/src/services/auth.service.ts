@@ -46,14 +46,14 @@ export class AuthService {
         id: user.id,
         email: user.email,
       },
-      "15m",
+      "1d",
     );
     const refreshToken = signJwt(
       {
         id: user.id,
         email: user.email,
       },
-      "1d",
+      "15d",
     );
 
     return { token, refreshToken, user };

@@ -6,6 +6,7 @@ export function Link({ className, ...props }: LinkProps) {
   return (
     <LinkRouterDom
       className={cn(
+        "flex items-center gap-1",
         "text-brand-base font-medium text-sm leading-[20px]",
         "hover:text-brand-base",
         "hover:cursor-pointer",
