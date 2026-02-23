@@ -7,7 +7,7 @@ import {
   Root,
   UseMiddleware,
 } from "type-graphql";
-import { CreateTransactionInput, SaveTransactionInput, UpdateTransactionInput } from "../DTOs/input/transaction.input";
+import { CreateTransactionInput, UpdateTransactionInput } from "../DTOs/input/transaction.input";
 import type { User } from "../generated/prisma/client";
 import { GqlUser } from "../graphql/decorators/user.decorator";
 import { isAuth } from "../middlewares/auth.middleware";
