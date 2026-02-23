@@ -1,5 +1,5 @@
 ### 🌐 PT-BR
-#### [EN-US](https://github.com/ArthurFakhouri/Financy/blob/main/READMEEN.md)
+#### [EN-US](https://github.com/ArthurFakhouri/Financy/blob/master/READMEEN.md)
 
 <div align="center">
     <img alt="financy" title="#financy" src=".github/logo.svg" width="250px" />
