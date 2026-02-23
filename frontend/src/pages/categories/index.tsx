@@ -82,7 +82,9 @@ export function Categories() {
         <Card className="flex-1 p-6 min-w-[250px] flex items-start gap-4">
           {mostUsedCategory && (
             <div className="size-8 flex items-center justify-center">
-              <Utensils className="size-6 text-blue-base" />
+              <CategoryIcons icon={mostUsedCategory.icon} className="size-6" style={{
+                color: `var(--color-${mostUsedCategory.color}-base)`
+              }} />
             </div>
           )}
           <div className="flex flex-col gap-2">
