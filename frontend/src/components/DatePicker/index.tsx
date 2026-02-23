@@ -31,7 +31,10 @@ export function DatePickerSimple({
         className
       )}>
         <FieldLabel htmlFor="date-picker-simple">
-          <span className="font-medium text-sm leading-[20px] text-gray-700">Data</span>
+          <span className={cn(
+            "font-medium text-sm leading-[20px] text-gray-700",
+            "group-[&:has(button:not(:disabled)[data-state='open'])]:text-brand-base",
+          )}>Data</span>
         </FieldLabel>
         <Popover>
           <PopoverTrigger asChild>
