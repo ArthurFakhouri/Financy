@@ -56,8 +56,11 @@ export class TransactionService {
     });
   }
 
-  async listTransaction() {
+  async listTransaction(userId: string) {
     return await prismaClient.transaction.findMany({
+      where: {
+        user_id: userId
+      },
       orderBy: {
         date: "desc",
       }

@@ -57,8 +57,11 @@ export class CategoryService {
     });
   }
 
-  async listCategory() {
+  async listCategory(userId: string) {
     return await prismaClient.category.findMany({
+      where: {
+        user_id: userId
+      },
       orderBy: {
         title: "asc",
       }

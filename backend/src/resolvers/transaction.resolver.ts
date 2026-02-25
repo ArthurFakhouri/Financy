@@ -50,8 +50,10 @@ export class TransactionResolver {
   }
 
   @Query(() => [TransactionModel])
-  async listTransaction(): Promise<TransactionModel[]> {
-    return this.transactionService.listTransaction();
+  async listTransaction(
+    @GqlUser() user: User,
+  ): Promise<TransactionModel[]> {
+    return this.transactionService.listTransaction(user.id);
   }
 
   @FieldResolver(() => UserModel)

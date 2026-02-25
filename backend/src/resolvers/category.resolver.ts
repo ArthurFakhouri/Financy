@@ -53,8 +53,10 @@ export class CategoryResolver {
   }
 
   @Query(() => [CategoryModel])
-  async listCategory(): Promise<CategoryModel[]> {
-    return this.categoryService.listCategory();
+  async listCategory(
+    @GqlUser() user: User,
+  ): Promise<CategoryModel[]> {
+    return this.categoryService.listCategory(user.id);
   }
 
   @FieldResolver(() => UserModel)
