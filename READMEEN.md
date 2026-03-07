@@ -49,6 +49,11 @@ Go to the folder where you cloned the project, open the terminal and run the com
 
 ## 📽️ Demonstration
 
+
+https://github.com/user-attachments/assets/6cf75b26-4f78-4c6c-9aab-30583e64ccee
+
+
+
 ## 🚀 Technologies
 
 The project was developed using the following technologies:
