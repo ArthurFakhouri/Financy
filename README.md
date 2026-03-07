@@ -50,6 +50,8 @@ Vá para a pasta em que você clonou o projeto, abra o terminal e execute os com
 
 ## 📽️ Demonstração
 
+https://github.com/user-attachments/assets/2b37d83f-bb13-46ad-b6d3-91e16087d195
+
 
 
 
